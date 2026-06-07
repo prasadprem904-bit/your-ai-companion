@@ -2,30 +2,30 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { Mic, MicOff } from "lucide-react";
-import { chatWithZoya } from "@/lib/zoya.functions";
+import { chatWithCora } from "@/lib/cora.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Zoya — AI Voice Assistant" },
-      { name: "description", content: "Zoya, your friendly AI voice assistant. Talk to her in real time." },
-      { property: "og:title", content: "Zoya — AI Voice Assistant" },
-      { property: "og:description", content: "Zoya, your friendly AI voice assistant. Talk to her in real time." },
+      { title: "Cora — AI Voice Assistant" },
+      { name: "description", content: "Cora, your friendly AI voice assistant. Talk to her in real time." },
+      { property: "og:title", content: "Cora — AI Voice Assistant" },
+      { property: "og:description", content: "Cora, your friendly AI voice assistant. Talk to her in real time." },
     ],
   }),
-  component: ZoyaPage,
+  component: CoraPage,
   ssr: false,
 });
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-function ZoyaPage() {
-  const chat = useServerFn(chatWithZoya);
+function CoraPage() {
+  const chat = useServerFn(chatWithCora);
   const [active, setActive] = useState(false);
   const [listening, setListening] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [muted, setMuted] = useState(false);
-  const [status, setStatus] = useState("Tap Start Session to talk to Zoya");
+  const [status, setStatus] = useState("Tap Start Session to talk to Cora");
   const [transcript, setTranscript] = useState("");
   const [reply, setReply] = useState("");
 
@@ -106,7 +106,7 @@ function ZoyaPage() {
     messagesRef.current = [];
     setTranscript("");
     setReply("");
-    const greet = "Hi, I'm Zoya. How can I help you today?";
+    const greet = "Hi, I'm Cora. How can I help you today?";
     setReply(greet);
     setStatus("Speaking…");
     if (!mutedRef.current) await speak(greet);
@@ -131,12 +131,12 @@ function ZoyaPage() {
   }, []);
 
   return (
-    <div className="zoya-bg relative flex min-h-screen flex-col items-center justify-between overflow-hidden px-4 py-6 text-white">
+    <div className="cora-bg relative flex min-h-screen flex-col items-center justify-between overflow-hidden px-4 py-6 text-white">
       {/* top bar */}
       <div className="z-10 flex w-full max-w-5xl items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-700 text-xs font-semibold">Z</div>
-          <span className="text-sm font-medium">Zoya</span>
+          <span className="text-sm font-medium">Cora</span>
         </div>
         <button
           onClick={() => setMuted((m) => !m)}
@@ -149,12 +149,12 @@ function ZoyaPage() {
 
       {/* orb */}
       <div className="relative flex flex-1 items-center justify-center">
-        <div className="zoya-glow" />
-        <div className="zoya-ring r1" />
-        <div className="zoya-ring r2" />
-        <div className="zoya-ring r3" />
-        <div className={`zoya-orb ${listening ? "listening" : ""} ${speaking ? "speaking" : ""}`}>
-          ZOYA
+        <div className="cora-glow" />
+        <div className="cora-ring r1" />
+        <div className="cora-ring r2" />
+        <div className="cora-ring r3" />
+        <div className={`cora-orb ${listening ? "listening" : ""} ${speaking ? "speaking" : ""}`}>
+          CORA
         </div>
         {listening && (
           <div className="absolute right-8 top-1/2 -translate-y-1/2 text-sm text-fuchsia-200/80">
