@@ -142,3 +142,73 @@
     color: var(--color-foreground);
   }
 }
+
+/* Zoya assistant theme */
+.zoya-bg {
+  background: radial-gradient(ellipse at center, #1a0820 0%, #0a0410 60%, #050208 100%);
+}
+
+.zoya-orb {
+  width: 220px;
+  height: 110px;
+  border-radius: 9999px;
+  background: radial-gradient(ellipse at center, oklch(0.35 0.18 340) 0%, oklch(0.18 0.12 320) 70%);
+  box-shadow:
+    0 0 60px 10px oklch(0.55 0.25 330 / 0.55),
+    0 0 140px 40px oklch(0.5 0.22 320 / 0.45),
+    inset 0 0 40px oklch(0.2 0.08 320 / 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  letter-spacing: 0.4em;
+  font-weight: 500;
+  font-size: 1.1rem;
+  animation: zoya-pulse 3.5s ease-in-out infinite;
+}
+
+.zoya-orb.listening {
+  animation: zoya-pulse-fast 1.2s ease-in-out infinite;
+  box-shadow:
+    0 0 80px 20px oklch(0.6 0.28 340 / 0.7),
+    0 0 200px 60px oklch(0.55 0.25 330 / 0.55),
+    inset 0 0 50px oklch(0.2 0.08 320 / 0.8);
+}
+
+.zoya-orb.speaking {
+  animation: zoya-pulse-fast 0.7s ease-in-out infinite;
+  background: radial-gradient(ellipse at center, oklch(0.45 0.22 350) 0%, oklch(0.2 0.14 330) 70%);
+}
+
+@keyframes zoya-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+@keyframes zoya-pulse-fast {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.08); filter: brightness(1.25); }
+}
+
+.zoya-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed oklch(0.65 0.2 330 / 0.35);
+  pointer-events: none;
+}
+.zoya-ring.r1 { width: 420px; height: 260px; animation: zoya-spin 22s linear infinite; }
+.zoya-ring.r2 { width: 560px; height: 340px; animation: zoya-spin 32s linear infinite reverse; }
+.zoya-ring.r3 { width: 700px; height: 420px; animation: zoya-spin 48s linear infinite; }
+
+@keyframes zoya-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.zoya-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, oklch(0.5 0.25 330 / 0.35) 0%, transparent 60%);
+  pointer-events: none;
+}
