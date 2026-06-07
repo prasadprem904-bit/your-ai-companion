@@ -106,7 +106,7 @@ function CoraPage() {
     messagesRef.current = [];
     setTranscript("");
     setReply("");
-    const greet = "Hi, I'm Cora. How can I help you today?";
+    const greet = "Hi, I'm Cora — your AI assistant powered by CoreAI.";
     setReply(greet);
     setStatus("Speaking…");
     if (!mutedRef.current) await speak(greet);
