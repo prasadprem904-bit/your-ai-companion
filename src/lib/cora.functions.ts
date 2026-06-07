@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 
 type Msg = { role: "user" | "assistant" | "system"; content: string };
 
-export const chatWithZoya = createServerFn({ method: "POST" })
+export const chatWithCora = createServerFn({ method: "POST" })
   .inputValidator((data: { messages: Msg[] }) => data)
   .handler(async ({ data }) => {
     const apiKey = process.env.LOVABLE_API_KEY;
@@ -20,7 +20,7 @@ export const chatWithZoya = createServerFn({ method: "POST" })
           {
             role: "system",
             content:
-              "You are Zoya, a friendly, witty AI voice assistant. Keep replies short, natural, and conversational — usually 1-3 sentences. Reply in the same language the user speaks (Hindi, Hinglish, or English).",
+              "You are Cora, a friendly, witty AI voice assistant. Keep replies short, natural, and conversational — usually 1-3 sentences. Reply in the same language the user speaks (Hindi, Hinglish, or English).",
           },
           ...data.messages,
         ],
