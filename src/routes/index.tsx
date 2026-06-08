@@ -263,6 +263,24 @@ function CoraPage() {
         </div>
         <div className="flex items-center gap-1">
           <button
+            onClick={() => toggleWake(!wakeEnabled)}
+            className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition ${
+              wakeEnabled
+                ? "bg-cyan-500/20 text-cyan-200 ring-1 ring-cyan-400/50"
+                : "bg-white/5 text-white/60 hover:bg-white/10"
+            }`}
+            aria-label={wakeEnabled ? "Stop wake word listening" : "Start wake word listening"}
+            title={`Wake word: "${wakeWord}"`}
+          >
+            <span className={`relative flex h-2 w-2`}>
+              {wakeActive && (
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
+              )}
+              <span className={`relative inline-flex h-2 w-2 rounded-full ${wakeActive ? "bg-cyan-400" : wakeEnabled ? "bg-cyan-500/60" : "bg-white/30"}`} />
+            </span>
+            {wakeEnabled ? (wakeActive ? "Listening for wake" : "Wake on") : "Wake off"}
+          </button>
+          <button
             onClick={() => setShowSettings(true)}
             className="rounded-full p-2 text-white/70 hover:bg-white/10 hover:text-white"
             aria-label="Settings"
